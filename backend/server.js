@@ -11,6 +11,8 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
+const path = require("path");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -18,6 +20,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 // ═══════════════════════════════════════════════════════════════════════
 // IN-MEMORY DATA STORE (JSON-based as per Week 12 requirements)
@@ -677,13 +681,18 @@ app.get('/api/docs', (req, res) => {
   });
 });
 
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
+
 // Error Handler
 app.use(errorHandler);
 
 // 404 Handler
-app.use((req, res) => {
-  res.status(404).json({ success: false, error: "Route not found" });
-});
+// app.use((req, res) => {
+//   res.status(404).json({ success: false, error: "Route not found" });
+// });
 
 // ═══════════════════════════════════════════════════════════════════════
 // SERVER START
