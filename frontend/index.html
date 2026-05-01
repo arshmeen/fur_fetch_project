@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fur Fetch | Find Your Forever Friend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --spy-green: #2d5a3d;
+            --spy-dark: #1a1a2e;
+            --spy-gold: #c9a84c;
+            --spy-pink: #e8b4b8;
+            --spy-cream: #f5f0e6;
+            --spy-accent: #4a7c59;
+            --spy-red: #8b3a3a;
+            --spy-light: #f8f6f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--spy-light);
+            color: var(--spy-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(26, 26, 46, 0.97);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--spy-gold);
+            z-index: 1000;
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--spy-gold);
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span { color: var(--spy-pink); font-size: 1.2rem; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--spy-cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--spy-gold);
+            border-bottom-color: var(--spy-gold);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--spy-dark) 0%, var(--spy-green) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--spy-gold);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--spy-gold);
+            margin-bottom: 1.5rem;
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--spy-cream);
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 .accent {
+            color: var(--spy-pink);
+            display: block;
+            font-size: 0.5em;
+            letter-spacing: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--spy-pink);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-desc {
+            color: rgba(245, 240, 230, 0.8);
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--spy-gold);
+            color: var(--spy-dark);
+        }
+
+        .btn-primary:hover {
+            background: #d4b85a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--spy-cream);
+            border: 2px solid var(--spy-cream);
+        }
+
+        .btn-secondary:hover {
+            background: var(--spy-cream);
+            color: var(--spy-dark);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .section.active { display: block; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--spy-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .deco-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--spy-gold), var(--spy-pink));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .stat-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--spy-green);
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        .filters {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .filter-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .filter-group input, .filter-group select {
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group input:focus, .filter-group select:focus {
+            outline: none;
+            border-color: var(--spy-gold);
+        }
+
+        .urgent-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem;
+            background: rgba(139, 58, 58, 0.05);
+            border-radius: 6px;
+            border: 1px solid rgba(139, 58, 58, 0.2);
+        }
+
+        .urgent-filter label {
+            color: var(--spy-red);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pet-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .pet-card.urgent {
+            border: 2px solid var(--spy-red);
+        }
+
+        .urgent-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--spy-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pet-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e8e4dc, #d4cfc5);
+        }
+
+        .pet-info { padding: 1.5rem; }
+
+        .pet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.8rem;
+        }
+
+        .pet-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--spy-dark);
+            font-weight: 700;
+        }
+
+        .pet-status {
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-available { background: rgba(45, 90, 61, 0.1); color: var(--spy-green); }
+        .status-pending { background: rgba(201, 168, 76, 0.15); color: var(--spy-gold); }
+        .status-adopted { background: rgba(136, 136, 136, 0.1); color: #888; }
+
+        .pet-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .pet-meta span {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .pet-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .pet-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .pet-tag {
+            padding: 0.2rem 0.6rem;
+            background: rgba(45, 90, 61, 0.08);
+            color: var(--spy-green);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .pet-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pet-actions .btn {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .btn-adopt {
+            background: var(--spy-green);
+            color: white;
+        }
+
+        .btn-adopt:hover { background: #3d7a52; }
+
+        .btn-meet {
+            background: transparent;
+            color: var(--spy-green);
+            border: 1px solid var(--spy-green);
+        }
+
+        .btn-meet:hover { background: var(--spy-green); color: white; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.1);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover { background: rgba(0,0,0,0.2); }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--spy-dark);
+        }
+
+        .modal-body { padding: 1.5rem 2rem; }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--spy-gold);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .modal-footer {
+            padding: 1rem 2rem 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--spy-dark);
+            color: var(--spy-gold);
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        tr:hover { background: rgba(201, 168, 76, 0.03); }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: #888;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(201, 168, 76, 0.2);
+            border-top-color: var(--spy-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #888;
+        }
+
+        .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 3s forwards;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            max-width: 350px;
+        }
+
+        .toast.success { background: var(--spy-green); }
+        .toast.error { background: var(--spy-red); }
+        .toast.info { background: var(--spy-gold); color: var(--spy-dark); }
+
+        @keyframes toastIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes toastOut {
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .pets-grid { grid-template-columns: 1fr; }
+            .filters-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal { margin: 1rem; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--spy-gold); border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"> Fur <span>Fetch</span></div>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')" class="nav-link active" data-section="home">Home</a></li>
+                <li><a onclick="showSection('pets')" class="nav-link" data-section="pets">Find a Pet</a></li>
+                <li><a onclick="showSection('applications')" class="nav-link" data-section="applications">Applications</a></li>
+                <li><a onclick="showSection('meetgreets')" class="nav-link" data-section="meetgreets">Meet & Greets</a></li>
+                <li><a onclick="showSection('addpet')" class="nav-link" data-section="addpet">Add Pet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="section active" id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">Operation: Full Stack Success</div>
+                <h1>
+                    Find Your
+                    <span class="accent">Forever Friend</span>
+                </h1>
+                <p class="hero-subtitle">Every pet deserves a loving home</p>
+                <p class="hero-desc">
+                    Browse adorable pets from shelters across the region. 
+                    Filter by breed, age, size, and location to find your perfect companion.
+                </p>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" onclick="showSection('pets')">Browse Pets</a>
+                    <a class="btn btn-secondary" onclick="showSection('addpet')">List a Pet</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 4rem 2rem; max-width: 1400px; margin: 0 auto;">
+            <div class="section-header">
+                <h2>Platform Overview</h2>
+                <div class="deco-line"></div>
+            </div>
+            <div class="stats-grid" id="homeStats">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading statistics...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="pets">
+        <div class="section-header">
+            <h2>Find Your Perfect Companion</h2>
+            <p>Browse all available pets and filter to find your match</p>
+            <div class="deco-line"></div>
+        </div>
+
+        <div class="filters">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Search</label>
+                    <input type="text" id="searchInput" placeholder="Name, breed, or description..." oninput="filterPets()">
+                </div>
+                <div class="filter-group">
+                    <label>Species</label>
+                    <select id="speciesFilter" onchange="filterPets()">
+                        <option value="">All Species</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Rabbit">Rabbit</option>
+                        <option value="Bird">Bird</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Size</label>
+                    <select id="sizeFilter" onchange="filterPets()">
+                        <option value="">All Sizes</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Location</label>
+                    <select id="locationFilter" onchange="filterPets()">
+                        <option value="">All Locations</option>
+                        <option value="Berlint">Berlint Shelter</option>
+                        <option value="Ostania">Ostania Rescue Center</option>
+                        <option value="Westalis">Westalis Animal Haven</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Max Age</label>
+                    <input type="number" id="maxAgeFilter" placeholder="Any age" min="0" onchange="filterPets()">
+                </div>
+                <div class="filter-group">
+                    <div class="urgent-filter">
+                        <input type="checkbox" id="urgentFilter" onchange="filterPets()">
+                        <label for="urgentFilter"> Urgent Only</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="petsContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading adorable pets...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="applications">
+        <div class="section-header">
+            <h2>Adoption Applications</h2>
+            <p>Track and manage adoption applications</p>
+            <div class="deco-line"></div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Applicant</th>
+                        <th>Pet</th>
+                        <th>Status</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationsTable">
+                    <tr><td colspan="5" class="loading"><div class="loading-spinner"></div>Loading applications...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section" id="meetgreets">
+        <div class="section-header">
+            <h2>Meet & Greet Scheduler</h2>
+            <p>Schedule and manage pet meet-and-greet appointments</p>
+            <div class="deco-line"></div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pet</th>
+                        <th>Applicant</th>
+                        <th>Date & Time</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="meetGreetsTable">
+                    <tr><td colspan="6" class="loading"><div class="loading-spinner"></div>Loading appointments...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section" id="addpet">
+        <div class="section-header">
+            <h2>Add a New Pet</h2>
+            <p>List a new pet for adoption</p>
+            <div class="deco-line"></div>
+        </div>
+        <div style="max-width: 700px; margin: 0 auto; background: white; padding: 2rem; border-radius: 16px; border: 1px solid rgba(201,168,76,0.15);">
+            <form id="addPetForm" onsubmit="handleAddPet(event)">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" name="name" required placeholder="Pet's name">
+                    </div>
+                    <div class="form-group">
+                        <label>Species *</label>
+                        <select name="species" required>
+                            <option value="">Select...</option>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                            <option value="Rabbit">Rabbit</option>
+                            <option value="Bird">Bird</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Breed *</label>
+                        <input type="text" name="breed" required placeholder="e.g., Golden Retriever">
+                    </div>
+                    <div class="form-group">
+                        <label>Age (years) *</label>
+                        <input type="number" name="age" required min="0" step="0.5" placeholder="e.g., 2">
+                    </div>
+                    <div class="form-group">
+                        <label>Size *</label>
+                        <select name="size" required>
+                            <option value="">Select...</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select name="gender" required>
+                            <option value="">Select...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" name="color" placeholder="e.g., Brown & White">
+                    </div>
+                    <div class="form-group">
+                        <label>Location/Shelter *</label>
+                        <select name="location" required>
+                            <option value="">Select...</option>
+                            <option value="Berlint Shelter">Berlint Shelter</option>
+                            <option value="Ostania Rescue Center">Ostania Rescue Center</option>
+                            <option value="Westalis Animal Haven">Westalis Animal Haven</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Tell us about this pet's personality, history, and needs..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Medical Notes</label>
+                    <input type="text" name="medicalNotes" placeholder="Vaccination status, health conditions...">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" name="imageUrl" placeholder="https://example.com/pet-image.jpg">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="checkbox" name="urgent" id="urgentCheck" style="width: auto;">
+                    <label for="urgentCheck" style="margin: 0; cursor: pointer;"> Mark as Urgent Adoption Needed</label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Add Pet Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Adopt Modal -->
+    <div class="modal-overlay" id="adoptModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('adoptModal')">x</button>
+            <div class="modal-header">
+                <h3>Adoption Application</h3>
+            </div>
+            <div class="modal-body">
+                <div id="adoptPetInfo" style="background: rgba(201,168,76,0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                <form id="adoptForm" onsubmit="handleAdoptSubmit(event)">
+                    <input type="hidden" name="petId" id="adoptPetId">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="applicantName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="applicantEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" name="applicantPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label>Experience with Pets</label>
+                        <select name="experience">
+                            <option value="">Select...</option>
+                            <option value="First-time owner">First-time owner</option>
+                            <option value="Some experience">Some experience</option>
+                            <option value="Experienced - had pets before">Experienced - had pets before</option>
+                            <option value="Very experienced">Very experienced</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Household Type</label>
+                        <select name="householdType">
+                            <option value="">Select...</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="House with yard">House with yard</option>
+                            <option value="House without yard">House without yard</option>
+                            <option value="Rural/Country">Rural/Country</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Why do you want to adopt this pet?</label>
+                        <textarea name="reason"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('adoptModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="document.getElementById('adoptForm').dispatchEvent(new Event('submit'))">Submit Application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meet & Greet Modal -->
+    <div class="modal-overlay" id="meetModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('meetModal')">x</button>
+            <div class="modal-header">
+                <h3>Schedule Meet & Greet</h3>
+            </div>
+            <div class="modal-body">
+                <div id="meetPetInfo" style="background: rgba(201,168,76,0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                <form id="meetForm" onsubmit="handleMeetSubmit(event)">
+                    <input type="hidden" name="petId" id="meetPetId">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="applicantName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="applicantEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Date *</label>
+                        <input type="date" name="scheduledDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time *</label>
+                        <input type="time" name="scheduledTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea name="notes" placeholder="Any special requests or questions..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('meetModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="document.getElementById('meetForm').dispatchEvent(new Event('submit'))">Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        let allPets = [];
+        let allApplications = [];
+        let allMeetGreets = [];
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelector('[data-section="' + sectionId + '"]').classList.add('active');
+            window.scrollTo(0, 0);
+
+            if (sectionId === 'pets') loadPets();
+            if (sectionId === 'applications') loadApplications();
+            if (sectionId === 'meetgreets') loadMeetGreets();
+            if (sectionId === 'home') loadStats();
+        }
+
+        function showToast(message, type) {
+            type = type || 'success';
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(function() { toast.remove(); }, 3500);
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) overlay.classList.remove('active');
+            });
+        });
+
+        async function loadStats() {
+            try {
+                const res = await fetch(API_BASE + '/stats');
+                const data = await res.json();
+                const stats = data.data;
+
+                document.getElementById('homeStats').innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.totalPets}</div>
+                        <div class="stat-label">Total Pets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.availablePets}</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.pendingPets}</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.urgentPets}</div>
+                        <div class="stat-label">Urgent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.totalApplications}</div>
+                        <div class="stat-label">Applications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-value">${stats.upcomingMeetGreets}</div>
+                        <div class="stat-label">Meet & Greets</div>
+                    </div>
+                `;
+            } catch (err) {
+                document.getElementById('homeStats').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <p>Could not load statistics. Make sure the API server is running on port 3000.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadPets() {
+            const container = document.getElementById('petsContainer');
+            container.innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Loading adorable pets...</p></div>';
+
+            try {
+                const res = await fetch(API_BASE + '/pets');
+                const data = await res.json();
+                allPets = data.data;
+                renderPets(allPets);
+            } catch (err) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <h3>API Server Not Connected</h3>
+                        <p>Please start the backend server first:<br><code>cd backend && npm install && npm start</code></p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderPets(pets) {
+            const container = document.getElementById('petsContainer');
+            if (pets.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <h3>No pets found</h3>
+                        <p>Try adjusting your filters or check back later!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '<div class="pets-grid">' + pets.map(function(pet) {
+                return `
+                <div class="pet-card ${pet.urgent ? 'urgent' : ''}">
+                    ${pet.urgent ? '<div class="urgent-badge"> Urgent</div>' : ''}
+                    <img src="${pet.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'}" 
+                         alt="${pet.name}" class="pet-image" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+                    <div class="pet-info">
+                        <div class="pet-header">
+                            <div class="pet-name">${pet.name}</div>
+                            <span class="pet-status status-${pet.status.toLowerCase()}">${pet.status}</span>
+                        </div>
+                        <div class="pet-meta">
+                            <span>${pet.breed}</span>
+                            <span>${pet.size}</span>
+                            <span>${pet.age} ${pet.age === 1 ? 'year' : 'years'}</span>
+                            <span>${pet.location.split(' ')[0]}</span>
+                        </div>
+                        <p class="pet-desc">${pet.description}</p>
+                        <div class="pet-tags">
+                            ${(pet.personality || []).map(function(tag) { return '<span class="pet-tag">' + tag + '</span>'; }).join('')}
+                        </div>
+                        <div class="pet-actions">
+                            <button class="btn btn-adopt" onclick="openAdoptModal('${pet.id}')">Apply to Adopt</button>
+                            <button class="btn btn-meet" onclick="openMeetModal('${pet.id}')">Meet & Greet</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('') + '</div>';
+        }
+
+        function filterPets() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const species = document.getElementById('speciesFilter').value;
+            const size = document.getElementById('sizeFilter').value;
+            const location = document.getElementById('locationFilter').value;
+            const maxAge = document.getElementById('maxAgeFilter').value;
+            const urgentOnly = document.getElementById('urgentFilter').checked;
+
+            let filtered = allPets.filter(function(pet) {
+                if (search && !pet.name.toLowerCase().includes(search) && 
+                    !pet.breed.toLowerCase().includes(search) &&
+                    !pet.description.toLowerCase().includes(search)) return false;
+                if (species && pet.species !== species) return false;
+                if (size && pet.size !== size) return false;
+                if (location && !pet.location.includes(location)) return false;
+                if (maxAge && pet.age > parseInt(maxAge)) return false;
+                if (urgentOnly && !pet.urgent) return false;
+                return true;
+            });
+
+            renderPets(filtered);
+        }
+
+        function openAdoptModal(petId) {
+            const pet = allPets.find(function(p) { return p.id === petId; });
+            if (!pet) return;
+            document.getElementById('adoptPetId').value = petId;
+            document.getElementById('adoptPetInfo').innerHTML = '<strong>Applying for:</strong> ' + pet.name + ' (' + pet.breed + ', ' + pet.age + ' ' + (pet.age === 1 ? 'year' : 'years') + ' old)';
+            openModal('adoptModal');
+        }
+
+        async function handleAdoptSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = Object.fromEntries(new FormData(form));
+
+            try {
+                const res = await fetch(API_BASE + '/applications', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showToast('Application submitted successfully!');
+                    closeModal('adoptModal');
+                    form.reset();
+                    loadApplications();
+                } else {
+                    showToast(result.error || 'Failed to submit application', 'error');
+                }
+            } catch (err) {
+                showToast('Network error. Is the server running?', 'error');
+            }
+        }
+
+        async function loadApplications() {
+            const tbody = document.getElementById('applicationsTable');
+            tbody.innerHTML = '<tr><td colspan="5" class="loading"><div class="loading-spinner"></div>Loading...</td></tr>';
+
+            try {
+                const res = await fetch(API_BASE + '/applications');
+                const data = await res.json();
+                allApplications = data.data;
+
+                if (allApplications.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:3rem;">No applications yet. <a onclick="showSection(\'pets\')" style="color:var(--spy-gold);cursor:pointer;">Browse pets to apply!</a></td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = allApplications.map(function(app) {
+                    return '<tr>' +
+                        '<td><strong>' + app.applicantName + '</strong><br><small style="color:#888;">' + app.applicantEmail + '</small></td>' +
+                        '<td>' + (app.pet ? app.pet.name : 'Unknown') + '</td>' +
+                        '<td><span class="status-badge">' + app.status + '</span></td>' +
+                        '<td>' + new Date(app.submittedAt).toLocaleDateString() + '</td>' +
+                        '<td><button class="btn" style="padding:0.4rem 0.8rem;font-size:0.7rem;" onclick="deleteApplication(\'' + app.id + '\')">Delete</button></td>' +
+                    '</tr>';
+                }).join('');
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#888;">Could not load applications</td></tr>';
+            }
+        }
+
+        async function deleteApplication(id) {
+            if (!confirm('Delete this application?')) return;
+            try {
+                await fetch(API_BASE + '/applications/' + id, { method: 'DELETE' });
+                showToast('Application deleted');
+                loadApplications();
+            } catch (err) {
+                showToast('Failed to delete', 'error');
+            }
+        }
+
+        function openMeetModal(petId) {
+            const pet = allPets.find(function(p) { return p.id === petId; });
+            if (!pet) return;
+            document.getElementById('meetPetId').value = petId;
+            document.getElementById('meetPetInfo').innerHTML = '<strong>Scheduling for:</strong> ' + pet.name + ' at ' + pet.location;
+            openModal('meetModal');
+        }
+
+        async function handleMeetSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = Object.fromEntries(new FormData(form));
+
+            try {
+                const res = await fetch(API_BASE + '/meet-greets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showToast('Meet & Greet scheduled!');
+                    closeModal('meetModal');
+                    form.reset();
+                    loadMeetGreets();
+                } else {
+                    showToast(result.error || 'Failed to schedule', 'error');
+                }
+            } catch (err) {
+                showToast('Network error. Is the server running?', 'error');
+            }
+        }
+
+        async function loadMeetGreets() {
+            const tbody = document.getElementById('meetGreetsTable');
+            tbody.innerHTML = '<tr><td colspan="6" class="loading"><div class="loading-spinner"></div>Loading...</td></tr>';
+
+            try {
+                const res = await fetch(API_BASE + '/meet-greets');
+                const data = await res.json();
+                allMeetGreets = data.data;
+
+                if (allMeetGreets.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:3rem;">No appointments scheduled. <a onclick="showSection(\'pets\')" style="color:var(--spy-gold);cursor:pointer;">Find a pet to meet!</a></td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = allMeetGreets.map(function(mg) {
+                    return '<tr>' +
+                        '<td>' + (mg.pet ? mg.pet.name : 'Unknown') + '</td>' +
+                        '<td>' + mg.applicantName + '</td>' +
+                        '<td>' + mg.scheduledDate + ' at ' + mg.scheduledTime + '</td>' +
+                        '<td>' + mg.location + '</td>' +
+                        '<td><span class="status-badge">' + mg.status + '</span></td>' +
+                        '<td><button class="btn" style="padding:0.4rem 0.8rem;font-size:0.7rem;" onclick="cancelMeetGreet(\'' + mg.id + '\')">Cancel</button></td>' +
+                    '</tr>';
+                }).join('');
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:#888;">Could not load appointments</td></tr>';
+            }
+        }
+
+        async function cancelMeetGreet(id) {
+            if (!confirm('Cancel this appointment?')) return;
+            try {
+                await fetch(API_BASE + '/meet-greets/' + id, { method: 'DELETE' });
+                showToast('Appointment cancelled');
+                loadMeetGreets();
+            } catch (err) {
+                showToast('Failed to cancel', 'error');
+            }
+        }
+
+        async function handleAddPet(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = Object.fromEntries(new FormData(form));
+            data.age = parseFloat(data.age);
+            data.urgent = form.querySelector('[name="urgent"]').checked;
+
+            try {
+                const res = await fetch(API_BASE + '/pets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showToast(data.name + ' has been added!');
+                    form.reset();
+                    showSection('pets');
+                } else {
+                    showToast(result.error || 'Failed to add pet', 'error');
+                }
+            } catch (err) {
+                showToast('Network error. Is the server running?', 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+        });
+    </script>
+</body>
+</html>
