@@ -202,7 +202,7 @@ The application is deployed as a **single full-stack service on Render**:
 
 ## 👨‍💻 Author
 
-**Shikhil Saxena**
+**Arshmeen Kaur**
 Full Stack Software Development
 Lambton College
 
